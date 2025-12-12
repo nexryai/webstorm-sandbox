@@ -23,8 +23,8 @@ Waypipe is used for seamless integration with the host's windowing system.
 X11 is not supported and will not be supported in the future, as it completely breaks the sandbox security model.
 
 ## Security
-The goal of this project is to minimize impact on the host when untrusted code is run in the IDE, without sacrificing performance.
-However, because Docker was not designed for sandboxing, it may be vulnerable to certain attacks, such as side-channel attacks.  
+The goal of this project is to minimize impact on the host when untrusted code is run in the IDE, without sacrificing performance.  
+However, because Docker was not designed for sandboxing, it may be vulnerable to certain attacks, such as side-channel attacks or wayland/kernel exploit.  
 No security solution is perfect.  
 
 This project has not been audited by security experts.
