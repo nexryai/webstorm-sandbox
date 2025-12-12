@@ -26,3 +26,21 @@ If you require advanced security features, we recommend considering other soluti
 
 ## ToDo
  [] Support for Git authentication/commit signing using SSH Agent Forwarding
+
+
+## Troubleshooting
+
+### Removing the lock file
+If the program fails to start due to an error like the one below, you will need to remove the lock file.
+```
+Internal error
+
+com.intellij.platform.ide.bootstrap.DirectoryLock$CannotActivateException: Process "/opt/webstorm/bin/webstorm" (15) is still running and does not respond.
+
+If the IDE is starting up or shutting down, please try again later.
+If the process seems stuck, please try killing it (WARNING: unsaved data might be lost).
+```
+
+```bash
+sudo rm ~/.local/share/docker/volumes/webstorm/_data/ubuntu/.config/JetBrains/WebStorm2025.3/.lock
+```
