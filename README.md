@@ -25,7 +25,7 @@ No security solution is perfect.
 If you require advanced security features, we recommend considering other solutions such as virtual machines.
 
 ## ToDo
- [] Support for Git authentication/commit signing using SSH Agent Forwarding
+ - [ ] Support for Git authentication/commit signing using SSH Agent Forwarding
 
 
 ## Troubleshooting
