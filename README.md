@@ -6,6 +6,13 @@ The goal of this project is to securely sandbox development environments that fr
 
 JetBrains IDEs include built-in container support, but it is resource-intensive and not a security-focused feature.
 
+## Usage
+This requires Waypipe and Docker to be installed.  
+For better security and to avoid network issues, using Rootless Docker is highly recommended.
+```bash
+rm /tmp/waypipe-bridge.sock && waypipe --socket /tmp/waypipe-bridge.sock client & sleep 1 && docker run -it --rm -v /tmp/waypipe-bridge.sock:/tmp/waypipe-bridge.sock:rw -v webstorm:/home --device /dev/dri --shm-size=4g ghcr.io/nexryai/webstorm-sandbox:main 
+```
+
 ## How it Works
 Docker is used to isolate the development environment, including the JetBrains IDE, from the host to a certain extent.
 Waypipe is used for seamless integration with the host's windowing system.
