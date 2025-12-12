@@ -23,3 +23,6 @@ The goal of this project is to minimize impact on the host when untrusted code i
 However, because Docker was not designed for sandboxing, it may be vulnerable to certain attacks, such as side-channel attacks.
 No security solution is perfect.
 If you require advanced security features, we recommend considering other solutions such as virtual machines.
+
+## ToDo
+ [] Support for Git authentication/commit signing using SSH Agent Forwarding
