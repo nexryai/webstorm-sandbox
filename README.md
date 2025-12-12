@@ -1,3 +1,6 @@
+# WebStorm Sandbox
+Sandboxed and secure WebStorm environment powered by Wayland and Docker
+
 ## Motivation
 The risk of supply-chain attacks targeting developers has risen sharply in recent years, making it no longer safe to run `npm install` in a local environment.  
 npm packages can easily compromise browser cookies and other local sensitive information. This is no longer a theoretical threat, but a real-world phenomenon.  
@@ -49,3 +52,8 @@ If the process seems stuck, please try killing it (WARNING: unsaved data might b
 ```bash
 sudo rm ~/.local/share/docker/volumes/webstorm/_data/ubuntu/.config/JetBrains/WebStorm2025.3/.lock
 ```
+
+## Acknowledgments
+
+- This project would not have been possible without [Waypipe](https://gitlab.freedesktop.org/mstoeckl/waypipe/).
+- Thanks to the [Unofficial JetBrains IDE PPA](https://github.com/JonasGroeger/jetbrains-ppa).
