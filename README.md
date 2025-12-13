@@ -16,6 +16,18 @@ For better security and to avoid network issues, using Rootless Docker is highly
 rm -rf /tmp/waypipe-bridge.sock && waypipe --socket /tmp/waypipe-bridge.sock client & sleep 1 && docker run -it --rm -v /tmp/waypipe-bridge.sock:/tmp/waypipe-bridge.sock:rw -v webstorm:/home --device /dev/dri --shm-size=4g ghcr.io/nexryai/webstorm-sandbox:main 
 ```
 
+### Sharing the Host's SSH Agent
+
+If you are confident that your system's SSH Agent is securely set up, you can share the host's SSH Agent with the sandbox by running the following command.
+
+> [!CAUTION]
+> This can put your system at risk if configured improperly, such as with an SSH private key that is not password-protected or one that requires no user interaction to use.
+> You should not do this unless you know what you are doing.
+
+```bash
+rm -rf /tmp/waypipe-bridge.sock && waypipe --socket /tmp/waypipe-bridge.sock client & sleep 1 && docker run -it --rm -v /tmp/waypipe-bridge.sock:/tmp/waypipe-bridge.sock:rw -v $SSH_AUTH_SOCK:/tmp/ssh.sock:rw -v webstorm:/home --device /dev/dri --shm-size=4g ghcr.io/nexryai/webstorm-sandbox:main
+```
+
 ## How it Works
 Docker is used to isolate the development environment, including the JetBrains IDE, from the host to a certain extent.  
 Waypipe is used for seamless integration with the host's windowing system.  
@@ -23,17 +35,15 @@ Waypipe is used for seamless integration with the host's windowing system.
 X11 is not supported and will not be supported in the future, as it completely breaks the sandbox security model.
 
 ## Security
-The goal of this project is to minimize impact on the host when untrusted code is run in the IDE, without sacrificing performance.  
-However, because Docker was not designed for sandboxing, it may be vulnerable to certain attacks, such as side-channel attacks or wayland/kernel exploit.  
-No security solution is perfect.  
-
-This project has not been audited by security experts.
-Running dangerous code even in a sandbox is risky, and developers should install packages with caution.  
+> [!WARNING]
+> The goal of this project is to minimize impact on the host when untrusted code is run in the IDE, without sacrificing performance.  
+> However, because Docker was not designed for sandboxing, it may be vulnerable to certain attacks, such as side-channel attacks or wayland/kernel exploit.  
+> No security solution is perfect.  
+> 
+> This project has not been audited by security experts.
+> Running dangerous code even in a sandbox is risky, and developers should install packages with caution.  
 
 If you require advanced security features, we recommend considering other solutions such as virtual machines.
-
-## ToDo
- - [ ] Support for Git authentication/commit signing using SSH Agent Forwarding
 
 
 ## Troubleshooting
