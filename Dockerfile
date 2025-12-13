@@ -22,6 +22,13 @@ RUN printf '#!/bin/bash\n\
 rm -f /tmp/wayland-0\n\
 socat UNIX-LISTEN:/tmp/waypipe.sock,fork,mode=777 UNIX-CONNECT:/tmp/waypipe-bridge.sock &\n\
 \n\
+# SSH Agent Forwarding\n\
+if [ -S /tmp/ssh.sock ]; then\n\
+    rm -f /tmp/ssh.ubuntu.sock\n\
+    socat UNIX-LISTEN:/tmp/ssh.ubuntu.sock,fork,mode=777,unlink-early UNIX-CONNECT:/tmp/ssh.sock &\n\
+    export SSH_AUTH_SOCK=/tmp/ssh.ubuntu.sock\n\
+fi\n\
+\n\
 sleep 0.1\n\
 \n\
 exec gosu ubuntu "$@"\n\
