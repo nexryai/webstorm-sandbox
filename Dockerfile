@@ -1,6 +1,6 @@
 FROM ubuntu:rolling
 RUN apt-get update && apt-get install -y \
-    weston libgl1-mesa-dri mesa-vulkan-drivers wget gpg socat waypipe gosu git openssh-client
+    fonts-noto-cjk libgl1-mesa-dri mesa-vulkan-drivers wget gpg socat waypipe gosu git openssh-client
 
 RUN wget -O- https://s3.eu-central-1.amazonaws.com/jetbrains-ppa/0xA6E8698A.pub.asc \
     | gpg --dearmor \
