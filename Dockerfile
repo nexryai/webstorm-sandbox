@@ -12,7 +12,7 @@ RUN echo "deb [signed-by=/usr/share/keyrings/jetbrains-ppa-archive-keyring.gpg a
 
 RUN wget -O- https://deb.nodesource.com/setup_24.x | bash
 
-RUN apt-get update && apt-get install -y webstorm nodejs
+RUN apt-get update && apt-get install -y webstorm nodejs && npm install -g yarn pnpm
 
 ENV XDG_RUNTIME_DIR=/run/container
 RUN mkdir -p /run/container && chown -R ubuntu:ubuntu /run/container
